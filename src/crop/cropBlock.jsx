@@ -9,8 +9,11 @@ class CropBlock extends Component {
 		super(props);
 		this.state = {
 			urlArr: this.props.imgArr ? this.props.imgArr : [],
+			number: this.props.number ? this.props.number : '',
+			uploadData: this.props.uploadData ? this.props.uploadData : {},
+			aspectRatio: this.props.aspectRatio ? this.props.aspectRatio : '',
+			url: this.props.url ? this.props.url : '',
 			close: true,
-			number: this.props.number ? this.props.number : ''
 		}
 
 		this.getUrl = this.getUrl.bind(this);
@@ -68,7 +71,7 @@ class CropBlock extends Component {
 			<div className = "crop-block">
 			   {imgList}
 				<div className="crop-add-img" onClick = {this.addImg}>添加图片</div>
-				<CropBox getUrl = {this.getUrl} close = {this.state.close}/>
+				<CropBox getUrl = {this.getUrl} uploadData = {this.state.uploadData} aspectRatio = {this.state.aspectRatio} url = {this.state.url} close = {this.state.close}/>
 			</div>
 		)
 	}

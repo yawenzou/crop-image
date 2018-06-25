@@ -11,7 +11,10 @@ class CropBox extends Component {
 
 		this.state = {
 	      src: '',
-	      close: this.props.close ? this.props.close : true
+	      close: this.props.close ? this.props.close : true,
+	      url: this.props.url ? this.props.url : '',
+	      uploadData: this.props.uploadData ? this.props.uploadData : {},
+	      aspectRatio: this.props.aspectRatio ? this.props.aspectRatio : ''
 	    }
 
 	    this.onChange = this.onChange.bind(this);
@@ -58,10 +61,12 @@ class CropBox extends Component {
 		let _this = this;
 		let fd = new FormData();
 		fd.append('file', imgBlob);
-		fd.append('type', "item");
-
+		for(let key in this.state.uploadData) {
+			fd.append(key, this.state.uploadData[key]);
+		}
+		
 		$.ajax({
-		    url: '/manage/manager/upload.do',
+		    url: this.state.url,
 		    type: 'POST',
 		    data: fd,
 		    contentType: false,
@@ -115,7 +120,7 @@ class CropBox extends Component {
 					<div className="crop-area">
 						<Cropper
 				            style={{ height: 400, width: 400 }}
-						    aspectRatio = { 1 / 1 }
+						    aspectRatio = {this.state.aspectRatio}
 						    preview = ".img-preview"
 				            guides={true}
 				            src={this.state.src}
