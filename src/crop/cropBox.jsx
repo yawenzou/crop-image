@@ -114,11 +114,11 @@ class CropBox extends Component {
 				<div className="crop-box-bg"></div>
 				<div className="crop-box-content">
 					<div className="crop-input">	
-						<input type="file" onChange={this.onChange} />
+						<input type="file" onChange={this.onChange} key = {this.state.src}/>
 						<div className="crop-close" onClick = {this.closeBox}>关闭</div>
 					</div>
 					<div className="crop-area">
-						<Cropper
+						<Cropper key = {this.state.src}
 				            style={{ height: 400, width: 400 }}
 						    aspectRatio = {this.state.aspectRatio}
 						    preview = ".img-preview"
